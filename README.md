@@ -4,4 +4,4 @@
 
 
 
-## Tactical espionage game for the ZX-Spectrum inspired by 90s videogames.
+## Tactical espionage game for the ZX-Spectrum inspired by 90s
