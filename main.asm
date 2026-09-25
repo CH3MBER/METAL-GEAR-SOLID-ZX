@@ -5,45 +5,36 @@
     CL_ALL EQU $0DAF
     CL_SET EQU $0DD9
 
-; ======= "TWENTY TWO: Blind Gun" Title Print =======
+; ======= Add Permanent Color Attributes =======
 
-StartTitle:
-    LD A, $47                                               ; BLACK paper and WHITE ink
+    LD A, %00000111                                        
     LD (ATTR_P), A
     CALL CL_ALL                                             ; Clear the whole display area    
-    LD B, $18-$0A                                           ; 10th row
-    LD C, $21-$05                                           ; 5th column
-    CALL CL_SET                                             ; CL-SET
+
+; ======= "TWENTY TWO: Blind Gun" Title Print =======
+
     LD HL, msgTitle
-    CALL PrintLoop
+    CALL PrintMsg
 
 ; ======= "Press 0 to Start" Print =======
 
-    LD A, $86                                               ; BLACK paper and YELLOW ink
-    LD (ATTR_T), A
-    LD B, $18-$0D                                           ; 13th row
-    LD C, $21-$08                                           ; 8th column
-    CALL CL_SET                                             ; CL-SET
     LD HL, msgPressZero
-    CALL PrintLoop
+    CALL PrintMsg
 
 ; ======= "Press 5 for Controls" Print =======
 
-    LD A, $07                                               ; BLACK paper and YELLOW ink
-    LD (ATTR_T), A
-    LD B, $18-$10                                           ; 16th row
-    LD C, $21-$07                                           ; 7th column
-    CALL CL_SET                                             ; CL-SET
     LD HL, msgPressFive
-    CALL PrintLoop
+    CALL PrintMsg
 
 InfLoop:
     JR InfLoop
 
-
-    msgTitle DEFM 'TWENTY TWO: Blind Gun', $00
-    msgPressZero DEFM 'Press 0 to Play', $00
-    msgPressFive DEFM 'Press 5 for Input', $00
+    msgTitle DEFB 10, 5, %01000111                          ; Row, Column, Attributes ; BLACK paper WHITE ink
+             DEFM 'TWENTY TWO: Blind Gun', $00
+    msgPressZero DEFB 13, 8, %10000110                      ; BLACK paper and FLASH YELLOW ink
+                 DEFM 'Press 0 to Play', $00
+    msgPressFive DEFB 16, 7, %00000111                      ; BLACK paper and WHITE ink
+                 DEFM 'Press 5 for Input', $00
     INCLUDE "print.asm"
 
-    END StartTitle
+    END $8000

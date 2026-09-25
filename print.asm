@@ -1,3 +1,18 @@
+PrintMsg:
+    LD A, $18
+    SUB (HL)
+    LD B, A
+    INC HL                                           
+    LD A, $21
+    SUB (HL)
+    LD C, A
+    INC HL
+    PUSH HL
+    CALL CL_SET                                           
+    POP HL
+    LD A, (HL)
+    LD (ATTR_T), A
+    INC HL
 PrintLoop:
     LD A, (HL)                                              
     OR A
