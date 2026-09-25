@@ -5,6 +5,25 @@
     CL_ALL EQU $0DAF
     CL_SET EQU $0DD9
 
+    msgTitle DEFB 10, 5, %01000111                          ; Row, Column, Attributes ; BLACK paper WHITE ink
+             DEFM 'TWENTY TWO: Blind Gun', $00
+    msgPressZero DEFB 13, 8, %10000110                      ; BLACK paper and FLASH YELLOW ink
+                 DEFM 'Press 0 to Play', $00
+    msgPressFive DEFB 16, 7, %00000111                      ; BLACK paper and WHITE ink
+                 DEFM 'Press 5 for Input', $00
+    INCLUDE "print.asm"
+
+; ================================
+;         START OF PROGRAM      
+; ================================
+
+Start:
+
+
+
+
+
+
 ; ======= Add Permanent Color Attributes =======
 
     LD A, %00000111                                        
@@ -29,12 +48,8 @@
 InfLoop:
     JR InfLoop
 
-    msgTitle DEFB 10, 5, %01000111                          ; Row, Column, Attributes ; BLACK paper WHITE ink
-             DEFM 'TWENTY TWO: Blind Gun', $00
-    msgPressZero DEFB 13, 8, %10000110                      ; BLACK paper and FLASH YELLOW ink
-                 DEFM 'Press 0 to Play', $00
-    msgPressFive DEFB 16, 7, %00000111                      ; BLACK paper and WHITE ink
-                 DEFM 'Press 5 for Input', $00
-    INCLUDE "print.asm"
 
-    END $8000
+
+
+
+    END Start

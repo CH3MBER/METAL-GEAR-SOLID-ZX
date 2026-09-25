@@ -1,3 +1,7 @@
+; ------------ PrintMsg -------------
+;    Prints a message given by HL
+; -----------------------------------
+
 PrintMsg:
     LD A, $18
     SUB (HL)
